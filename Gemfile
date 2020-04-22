@@ -11,7 +11,7 @@ gem "recaptcha"
 # gem 'secure_headers'
 
 gem 'json', '~> 1.8', '>= 1.8.3'
-gem 'colorize'
+# gem 'colorize'
 gem 'dropbox_api'
 gem 'rails-html-sanitizer'#, '~> 1.0.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -55,7 +55,7 @@ gem 'date'
 gem 'whenever', require: false
 gem "chartkick"
 gem 'http'
-gem 'dropbox_api'
+# gem 'dropbox_api'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
@@ -75,6 +75,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 3.9'
 end
 
 group :development do
@@ -102,8 +103,10 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'simplecov', require: false, group: :test
 gem 'test'
-
+gem 'webmock', '~> 2.1'
+gem "httparty"
 # Figaro for hidding the Keys
 gem 'figaro'
 
@@ -117,13 +120,10 @@ gem 'colorize'
 gem 'gmaps4rails'
 
 #TDD
-group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails', '~> 3.9'
-end
-# gem 'chuck_norris'
-# gem 'open-weather'
 
+# gem 'chuck_norris'
+gem 'open-weather'
+gem 'rest-client'
 
 
 gem 'faraday'

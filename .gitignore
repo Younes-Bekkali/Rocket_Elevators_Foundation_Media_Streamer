@@ -71,3 +71,5 @@ ibm-credentials.env
 
 #ignore seeds
 /db/seed.rb
+
+echo "coverage" >> .gitignore

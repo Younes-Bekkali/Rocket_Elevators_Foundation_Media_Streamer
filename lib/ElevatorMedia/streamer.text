@@ -1,0 +1,50 @@
+require "httparty"
+require "nokogiri"
+require "open-uri"
+require "open_weather"
+require 'rest-client'
+require 'streamer_spec'
+
+module ElevatorMedia
+    class Streamer
+        def initialize
+            @chuck_norris = 'http://api.icndb.com/jokes/random'
+            #@open_weather = ENV['open_weather_api']
+        end
+        
+        def self.getContent(type = "weather")
+            if (type == "weather")
+            cityWeatherHTML = getweather()
+            return cityWeatherHTML
+            end
+            if (type == "chuck_norris")
+                return "<div class='elevator-media-streamer-content'>#{JSON.parse(self.getChuckNorrisQuote)['value']['joke']}</div>"  
+            end 
+            return "div"
+        end
+       # http://api.openweathermap.org/data/2.5/weather?APPID=34282b0d42ef00a0529b546b07c1983b&id=6077243&units=metric
+        def self.weatherCity()
+            options = { units: "metric", APPID: ENV["weather"] }
+            # get current weather by city id
+            cityInfo = OpenWeather::Current.city_id(6077243, options)
+            # return the query
+            puts cityInfo
+            return cityInfo
+        end
+
+        def self.getweather()
+             # get the query from weatherCity method
+             obj = self.weatherCity()
+             cityWeatherHTML = "<html><body><div> City: #{obj["name"]}, #{obj["sys"]["country"]}, #{obj["weather"][0]["description"]}, #{obj["main"]["temp"]} °C, #{obj["main"]["humidity"]} % Humidity  </div></body></html>"
+             puts cityWeatherHTML
+             # return HTML inside a string
+             return cityWeatherHTML
+        end
+        # method that gets a random Chuck Norris quote/joke 
+        def getChuckNorrisQuote
+            @response = RestClient::Request.execute(method: :get, url: @chuck_norris, header: {})
+        end
+
+       
+    end 
+end
