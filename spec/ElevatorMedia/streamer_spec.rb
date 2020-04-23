@@ -4,7 +4,11 @@ require 'rest-client'
 require 'spec_helper'
 # require 'rails_helper'
 
-describe ElevatorMedia::Streamer do
+MOCKED_RESPONSE = {"week_number"=>17,"utc_offset"=>"-04:00","utc_datetime"=>"2020-04-23T13:06:02.053002+00:00","unixtime"=>1587647162,"timezone"=>"America/Montreal","raw_offset"=>-18000,"dst_until"=>"2020-11-01T06:00:00+00:00","dst_offset"=>3600,"dst_from":"2020-03-08T07:00:00+00:00","dst"=>true,"day_of_year"=>114,"day_of_week"=>4,"datetime"=>"2020-04-23T09:06:02.053002-04:00","client_ip"=>"45.58.108.94","abbreviation"=>"EDT"}
+#MOCKED_RESPONSE = {"week_number":17,"utc_offset":"-04:00","utc_datetime":"2020-04-23T13:06:02.053002+00:00","unixtime":1587647162,"timezone":"America/Montreal","raw_offset":-18000,"dst_until":"2020-11-01T06:00:00+00:00","dst_offset":3600,"dst_from":"2020-03-08T07:00:00+00:00","dst":true,"day_of_year":114,"day_of_week":4,"datetime":"2020-04-23T09:06:02.053002-04:00","client_ip":"45.58.108.94","abbreviation":"EDT"}
+
+
+describe ElevatorMedia::Streamer, :type => :feature do
     
     let!(:streamer){ElevatorMedia::Streamer.new}
 
@@ -21,7 +25,7 @@ describe ElevatorMedia::Streamer do
     end
 
     # Testing the required getContent method and what it returns
-    describe "getContent behavior" do
+    describe "getContent" do
 
         # Testing if the getContent method returns actual html content by expecting a String and a </div> tag
         it "should return a valid html" do    
@@ -39,6 +43,7 @@ describe ElevatorMedia::Streamer do
         # Testing if the default type of the getContent method returns 'chuck_norris' type content
         it "default content should be of 'chuck_norris' type" do
             expect(streamer).to receive(:getChuckNorrisQuote).and_return({value: {joke: 'Chuck Norris joke received'}}.to_json) 
+            
             streamer.getContent('chuck_norris')
         end
 
@@ -71,31 +76,21 @@ describe ElevatorMedia::Streamer do
         expect(current_forecast).to be_a(String)
         #puts current_forecast
     end
+    
+    #it "We should handle service response correctly" do
+       # fake_rest_client_response = double('fake_rest_client_response')
+        #json_body = double('json_body')
+        #expect(RestClient).to receive(:get).with("http://worldtimeapi.org/api/timezone/America/Montreal").and_return(MOCKED_RESPONSE)
+       # expect(fake_rest_client_response).to receive(:body).and_return(json_body)
+       # expect(JSON).to receive(:parse).and_return(MOCKED_RESPONSE)
+       # streamer.getContent()
+     # end
 
 
+    
 
-    # Testing if Spotify gives back any successful response
-    # it 'got spotify response' do
-    #     expect(RSpotify).to receive(:raw_response) {true}
-    #     streamer_object = ElevatorMedia::Streamer.new
-    #     valid_response = streamer_object.getSpotifyResponse
-    #     expect(valid_response).to eq(true)
-    # end    
+    
 
-    # Testing if the Spotify user is logged-in (should be true, because a client ID and secret was supplied)
-    # it 'got spotify login status' do
-    #     expect(RSpotify).to receive(:authenticate) {true}
-    #     streamer_object = ElevatorMedia::Streamer.new
-    #     login_status = streamer_object.getSpotifyStatus
-    #     expect(login_status).to eq(true)
-    # end
-
-    # Testing if a specific Spotify user can be found (using my personel spotify username)
-    # it 'got spotify valid user' do
-    #     expect(RSpotify::User).to receive(:find) {"awoggddbv0ucdh3b1w86p4wmu"}
-    #     streamer_object = ElevatorMedia::Streamer.new
-    #     valid_user = streamer_object.getSpotifyUser
-    #     expect(valid_user).to eq("awoggddbv0ucdh3b1w86p4wmu")
-    # end
+   
 
 end

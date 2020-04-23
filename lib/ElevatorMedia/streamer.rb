@@ -12,7 +12,7 @@ module ElevatorMedia
         end
   
         # required method from week 10 Codeboxx file that renders interesting HTML content to the elevator's screens
-        def getContent(type='weather')
+        def getContent(type='chuck_norris')
           #  puts getHtmlChoice(type)
             getHtmlChoice(type)
         end
@@ -20,13 +20,19 @@ module ElevatorMedia
         # method that returns a specific html depending on the "type" asked in the getContent method, is 'chuck_norris' by default
         def getHtmlChoice(type)
           if type == 'chuck_norris' 
-            return "<div class='elevator-media-streamer-content'>#{JSON.parse(self.getChuckNorrisQuote)['value']['joke']}</div>"  
+            obj = JSON.parse(self.getChuckNorrisQuote)['value']['joke']
+            html="<div class='elevator-media-streamer-content'>#{obj}</div>"  
+            return html  
           end 
-          if type == 'weather'  
-            return "<div class='elevator-media-streamer-content'>#{self.getWeather}</div>"  
+          if type == 'weather' 
+            obj =  self.getWeather
+            html="<div class='elevator-media-streamer-content'>#{obj}</div>"  
+            return html
           end 
           if type == 'Timer'  
-            return "<div class='elevator-media-streamer-content'>#{JSON.parse(self.getTimer)['datetime']}</div>"  
+            obj = JSON.parse(self.getTimer)['datetime']
+            html="<div class='elevator-media-streamer-content'>#{obj}</div>"  
+            return html
           end 
         end
   
@@ -50,24 +56,7 @@ module ElevatorMedia
             options = { units: "metric", APPID: "34282b0d42ef00a0529b546b07c1983b" }
             OpenWeather::Current.city_id(6077243, options)
         end
-        ####################
-        
-  
-        # method that gets a response from Spotify to check connection
-        # def getSpotifyResponse
-        #   RSpotify.raw_response = true
-        #   @spotify_response = RSpotify.raw_response
-        # end
-  
-        # method that gets the status of a Spotify connection with the selected client ID and secret
-        # def getSpotifyStatus
-        #     @status = RSpotify::authenticate(ENV['spot_client_id'], ENV['spot_client_secret'])
-        # end
-  
-        # method that gets a specific Spotify user with the username
-        # def getSpotifyUser
-        #     @user = RSpotify::User.find("awoggddbv0ucdh3b1w86p4wmu")
-        # end
+       
         
     end
   end
