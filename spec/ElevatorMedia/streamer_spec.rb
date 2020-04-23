@@ -32,7 +32,7 @@ describe ElevatorMedia::Streamer do
 
         # Testing if the getHtmlFromCloud method returns "interesting" html content described in the tests below
         it "should get interesting html content from internet" do
-           expect(streamer).to receive(:getHtmlFromCloud)
+           expect(streamer).to receive(:getHtmlChoice)
            streamer.getContent()
         end
 
@@ -61,6 +61,7 @@ describe ElevatorMedia::Streamer do
         current_weather = streamer.getWeather['weather'][0]['main']
         expect(current_weather).to_not eq(nil)
         expect(current_weather).to be_a(String)
+        #puts current_weather
     end
 
     # Testing if asking for a weather forecast gives back a response (expecting a String)
@@ -68,7 +69,10 @@ describe ElevatorMedia::Streamer do
         current_forecast = streamer.getForecast['weather'][0]['main']
         expect(current_forecast).to_not eq(nil)
         expect(current_forecast).to be_a(String)
+        #puts current_forecast
     end
+
+
 
     # Testing if Spotify gives back any successful response
     # it 'got spotify response' do
