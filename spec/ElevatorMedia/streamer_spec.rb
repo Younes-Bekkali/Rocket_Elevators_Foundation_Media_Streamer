@@ -35,8 +35,8 @@ describe ElevatorMedia::Streamer, :type => :feature do
         end
 
         # Testing if the getHtmlFromCloud method returns "interesting" html content described in the tests below
-        it "should get interesting html content from internet" do
-           expect(streamer).to receive(:getHtmlChoice)
+        it "should get interesting html content from the web" do
+           expect(streamer).to receive(:getContent)
            streamer.getContent()
         end
 

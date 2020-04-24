@@ -12,29 +12,28 @@ module ElevatorMedia
         end
   
         # required method from week 10 Codeboxx file that renders interesting HTML content to the elevator's screens
-        def getContent(type='chuck_norris')
+        def getContent(type='weather')
           #  puts getHtmlChoice(type)
-            getHtmlChoice(type)
+            #getHtmlChoice(type)
+            if type == 'chuck_norris' 
+              obj = JSON.parse(self.getChuckNorrisQuote)['value']['joke']
+              html="<div class='elevator-media-streamer-content'>#{obj}</div>"  
+              return html  
+            end 
+            if type == 'weather' 
+              obj =  self.getWeather
+              html="<div class='elevator-media-streamer-content'>#{obj}</div>"  
+              return html
+            end 
+            if type == 'Timer'  
+              obj = JSON.parse(self.getTimer)['datetime']
+              html="<div class='elevator-media-streamer-content'>#{obj}</div>"  
+              return html
+            end 
         end
   
         # method that returns a specific html depending on the "type" asked in the getContent method, is 'chuck_norris' by default
-        def getHtmlChoice(type)
-          if type == 'chuck_norris' 
-            obj = JSON.parse(self.getChuckNorrisQuote)['value']['joke']
-            html="<div class='elevator-media-streamer-content'>#{obj}</div>"  
-            return html  
-          end 
-          if type == 'weather' 
-            obj =  self.getWeather
-            html="<div class='elevator-media-streamer-content'>#{obj}</div>"  
-            return html
-          end 
-          if type == 'Timer'  
-            obj = JSON.parse(self.getTimer)['datetime']
-            html="<div class='elevator-media-streamer-content'>#{obj}</div>"  
-            return html
-          end 
-        end
+        
   
         # method that gets a random Chuck Norris quote/joke 
         def getChuckNorrisQuote
@@ -45,13 +44,13 @@ module ElevatorMedia
           @response = RestClient::Request.execute(method: :get, url: @Timer, header: {})
       end
   
-        # method that gets the weather for a specific city, Quebec in this case
+        # method that gets the weather for a specific city, Montreal in this case
         def getWeather
             options = { units: "metric", APPID: "34282b0d42ef00a0529b546b07c1983b" }
             OpenWeather::Current.city_id(6077243, options)
         end
   
-        # method that gets the weather forecast for a selected city, in this case Quebec city
+        # method that gets the weather forecast for a selected city, in this case Montreal city
         def getForecast
             options = { units: "metric", APPID: "34282b0d42ef00a0529b546b07c1983b" }
             OpenWeather::Current.city_id(6077243, options)

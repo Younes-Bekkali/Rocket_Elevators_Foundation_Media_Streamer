@@ -128,11 +128,26 @@ ActiveRecord::Schema.define(version: 2020_03_12_171141) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "locked_at"
-    t.integer "failed_attempts", default: 0, null: false 
-    t.string "unlock_token" # Only if unlock strategy is :email or :both
-    t.index ["unlock_token" ], name: "index_employees_on_unlock_token", unique: true 
+    t.integer "failed_attempts", default: 0, null: false
+    t.string "unlock_token"
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
+    t.index ["unlock_token"], name: "index_employees_on_unlock_token", unique: true
+  end
+
+  create_table "interventions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "author", null: false
+    t.bigint "building_id", null: false
+    t.bigint "customer_id", null: false
+    t.bigint "battery_id"
+    t.bigint "column_id"
+    t.bigint "elevator_id"
+    t.bigint "employee_id"
+    t.string "result"
+    t.string "status"
+    t.string "report"
+    t.datetime "start_intervention"
+    t.datetime "end_intervention"
   end
 
   create_table "leads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -172,21 +187,6 @@ ActiveRecord::Schema.define(version: 2020_03_12_171141) do
     t.string "Final_Price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "interventions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "author", null: false
-    t.bigint "building_id", null: false
-    t.bigint "customer_id", null: false
-    t.bigint"battery_id"
-    t.bigint "column_id"
-    t.bigint "elevator_id"
-    t.bigint "employee_id"
-    t.string "result"
-    t.string "status"
-    t.string "report"
-    t.datetime "start_intervention"
-    t.datetime "end_intervention"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
