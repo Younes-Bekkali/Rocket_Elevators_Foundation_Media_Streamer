@@ -20,8 +20,8 @@ Unit tests:
 - File: ./spec/adminpanel_spec.rb
    Test command: rspec ./spec/adminpanel_spec.rb
 
-
-
+TDD extra language repo: JS + JEST
+https://github.com/yobek-lab/Elevators_Streamer_JEST.git
 
 **Week 9 - Foundation week ** 
 # <b>Foundation week:Rebuild its information system in Individual mode</b>
