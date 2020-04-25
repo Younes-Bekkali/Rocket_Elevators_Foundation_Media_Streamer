@@ -8,10 +8,10 @@ RSpec.describe "LeadsController", :type => :controller do
         expect(@response.status).to eq (200)
     end
     # Testing if the leads controller returns successful response and an actual Lead object
-    # (uncomment the 'p Lead line' to see it in the console)
+    
     it "Leads controller should succesfully return an Lead object' " do
         expect(@response.status).to eq (200)
         expect(led).to_not eq(nil)
-        p Lead
+        puts Lead
     end
 end

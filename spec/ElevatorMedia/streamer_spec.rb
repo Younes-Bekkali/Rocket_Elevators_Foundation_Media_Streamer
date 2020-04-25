@@ -24,6 +24,29 @@ describe ElevatorMedia::Streamer, :type => :feature do
         expect(streamer).to respond_to(:getContent)        
     end
 
+     # Testing if the Chuck Norris database returns a succesful quote, printing a quote in the console
+     it 'got response from Chuck Norris database' do
+        json_response = JSON.parse(streamer.getChuckNorrisQuote)
+        # puts json_response
+        expect(json_response["type"]).to eq("success")
+    end
+
+    # Testing if the open-weather API gives back a response (expecting a String)
+    it 'got open-weather response' do
+        current_weather = streamer.getWeather['weather'][0]['main']
+        expect(current_weather).to_not eq(nil)
+        expect(current_weather).to be_a(String)
+        #puts current_weather
+    end
+
+    # Testing if asking for a weather forecast gives back a response (expecting a String)
+    it 'got open-weather forecast' do
+        current_forecast = streamer.getForecast['weather'][0]['main']
+        expect(current_forecast).to_not eq(nil)
+        expect(current_forecast).to be_a(String)
+        #puts current_forecast
+    end
+
     # Testing the required getContent method and what it returns
     describe "getContent" do
 
@@ -54,37 +77,9 @@ describe ElevatorMedia::Streamer, :type => :feature do
         end
     end
 
-    # Testing if the Chuck Norris database returns a succesful quote, printing a quote in the console
-    it 'got response from Chuck Norris database' do
-        json_response = JSON.parse(streamer.getChuckNorrisQuote)
-        # puts json_response
-        expect(json_response["type"]).to eq("success")
-    end
-
-    # Testing if the open-weather API gives back a response (expecting a String)
-    it 'got open-weather response' do
-        current_weather = streamer.getWeather['weather'][0]['main']
-        expect(current_weather).to_not eq(nil)
-        expect(current_weather).to be_a(String)
-        #puts current_weather
-    end
-
-    # Testing if asking for a weather forecast gives back a response (expecting a String)
-    it 'got open-weather forecast' do
-        current_forecast = streamer.getForecast['weather'][0]['main']
-        expect(current_forecast).to_not eq(nil)
-        expect(current_forecast).to be_a(String)
-        #puts current_forecast
-    end
+   
     
-    #it "We should handle service response correctly" do
-       # fake_rest_client_response = double('fake_rest_client_response')
-        #json_body = double('json_body')
-        #expect(RestClient).to receive(:get).with("http://worldtimeapi.org/api/timezone/America/Montreal").and_return(MOCKED_RESPONSE)
-       # expect(fake_rest_client_response).to receive(:body).and_return(json_body)
-       # expect(JSON).to receive(:parse).and_return(MOCKED_RESPONSE)
-       # streamer.getContent()
-     # end
+   
 
 
     

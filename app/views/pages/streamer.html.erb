@@ -1,5 +1,4 @@
-<%= require 'ElevatorMedia/streamer' %>
-
-<%= ElevatorMedia::Streamer.getContent.html_safe %>
+<% require 'ElevatorMedia/Streamer.rb' %>
+ <%= ElevatorMedia::Streamer.getContent(weather).html_safe %> 
 
 
