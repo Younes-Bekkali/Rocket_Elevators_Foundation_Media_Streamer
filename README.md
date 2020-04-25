@@ -1,9 +1,32 @@
+# **Week 11 - Elevators Media Streamer ** 
+# <b>Quality and TDD</b>
+
+
+For testing:
+
+- File : ./spec/ElevatorMedia/streamer_spec.rb
+- Test command: rspec ./spec/ElevatorMedia/streamer_spec.rb
+
+Unit tests:
+- File: ./spec/Controllers/Quotes_controller_spec.rb
+   Test command: rspec ./spec/Controllers/Quotes_controller_spec.rb
+   
+- File:  ./spec/Controllers/Interventions_controller_spec.rb
+   Test command: rspec ./spec/Controllers/Interventions_controller_spec.rb
+   
+- File:  ./spec/Controllers/Leads_controller_spec.rb
+   Test command: rspec ./spec/Controllers/Leads_controller_spec.rb
+   
+- File: ./spec/adminpanel_spec.rb
+   Test command: rspec ./spec/adminpanel_spec.rb
+
+
+
+
+**Week 9 - Foundation week ** 
 # <b>Foundation week:Rebuild its information system in Individual mode</b>
 # <b>A .NET Core API deployed on Microsoft Azure</b>
 # <b>Intervations form with the Zendex API feature added</b>
-
-**Week 9 - Foundation week ** 
-
 ** Younes Bekkali **
 
 1) a new interventions table is added to the mysql database, database name: YounesDeploy
