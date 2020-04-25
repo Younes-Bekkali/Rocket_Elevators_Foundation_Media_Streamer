@@ -11,7 +11,7 @@ module ElevatorMedia
             @Timer = 'http://worldtimeapi.org/api/timezone/America/Montreal'
         end
   
-        # required method from week 10 Codeboxx file that renders interesting HTML content to the elevator's screens
+        
         def getContent(type='weather')
           #  puts getHtmlChoice(type)
             #getHtmlChoice(type)
@@ -32,7 +32,7 @@ module ElevatorMedia
             end 
         end
   
-        # method that returns a specific html depending on the "type" asked in the getContent method, is 'chuck_norris' by default
+        
         
   
         # method that gets a random Chuck Norris quote/joke 
